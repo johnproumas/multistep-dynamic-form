@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+  </head>
+  <body>
+    <div
+      id="step1"
+      class="form-step"
+    >
+      <h2>Do you have sensitive skin?</h2>
+      <button onclick="nextStep('step1', 'yes')">Yes</button>
+      <button onclick="nextStep('step1', 'no')">No</button>
+    </div>
+
+    <div
+      id="step2"
+      class="form-step"
+      style="display: none"
+    >
+      <h2>Do you prefer spray, lotion or a random third option?</h2>
+      <button onclick="nextStep('step2', 'spray')">Spray</button>
+      <button onclick="nextStep('step2', 'lotion')">Lotion</button>
+      <button onclick="nextStep('step2', 'random')">Random</button>
+    </div>
+
+    <div
+      id="step3"
+      class="form-step"
+      style="display: none"
+    >
+      <h2>Do you like day or night?</h2>
+      <button onclick="nextStep('step3', 'day')">Day</button>
+      <button onclick="nextStep('step3', 'night')">Night</button>
+    </div>
+
+    <!-- More steps... -->
+
+    <div
+      id="result"
+      class="form-step"
+      style="display: none"
+    >
+      <h2>Recommended sunscreen: <span id="recommendation"></span></h2>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
