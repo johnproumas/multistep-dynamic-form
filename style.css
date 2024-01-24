@@ -1,4 +1,38 @@
 body {
+  --color: hwb(41 23% 39%);
   background: hwb(222 5% 91%);
-  color: hwb(41 23% 39%);
+  color: var(--color);
+  display: grid;
+
+  & * {
+    font-family: "Commissioner", sans-serif;
+    font-weight: 400;
+  }
+
+  & #result {
+    order: -2;
+  }
+  & #q5,
+  & #q7 {
+    order: -1;
+  }
+
+  & button {
+    font-size: 15px;
+    background: transparent;
+    border: 2px solid var(--color);
+    border-radius: 12px;
+    padding: 10px 10px;
+    display: block;
+    min-width: 330px;
+    margin-bottom: 10px;
+    color: var(--color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: var(--color);
+      color: hwb(222 5% 91%);
+    }
+  }
 }

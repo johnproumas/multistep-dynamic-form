@@ -12,46 +12,167 @@
       rel="stylesheet"
       href="style.css"
     />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div
-      id="step1"
-      class="form-step"
+      id="q1"
+      class="form-question"
     >
-      <h2>Do you have sensitive skin?</h2>
-      <button onclick="nextStep('step1', 'yes')">Yes</button>
-      <button onclick="nextStep('step1', 'no')">No</button>
+      <h2>Ψάχνω το τέλειο αντηλιακό για:</h2>
+      <button onclick="nextStep('q1', 'q1_emena')">Εμένα</button>
+      <button onclick="nextStep('q1', 'q1_oikogeneia')">
+        Όλη την οικογένεια
+      </button>
+      <button onclick="nextStep('q1', 'q1_paidia')">Παιδιά</button>
     </div>
 
     <div
-      id="step2"
-      class="form-step"
+      id="q2"
+      class="form-question"
       style="display: none"
     >
-      <h2>Do you prefer spray, lotion or a random third option?</h2>
-      <button onclick="nextStep('step2', 'spray')">Spray</button>
-      <button onclick="nextStep('step2', 'lotion')">Lotion</button>
-      <button onclick="nextStep('step2', 'random')">Random</button>
+      <h2>Θέλω να προστατεύσω:</h2>
+      <button onclick="nextStep('q2', 'q2_prosopo')">Το πρόσωπο</button>
+      <button onclick="nextStep('q2', 'q2_soma')">Το σώμα</button>
+      <button onclick="nextStep('q2', 'q2_kaitadio')">Και τα δύο!</button>
     </div>
 
     <div
-      id="step3"
-      class="form-step"
+      id="q3"
+      class="form-question"
       style="display: none"
     >
-      <h2>Do you like day or night?</h2>
-      <button onclick="nextStep('step3', 'day')">Day</button>
-      <button onclick="nextStep('step3', 'night')">Night</button>
+      <h2>Με ενδιαφέρει το αντηλιακό να έχει:</h2>
+      <button onclick="nextStep('q3', 'q3_spf30')">SPF30</button>
+      <button onclick="nextStep('q3', 'q3_spf50')">SPF50</button>
+    </div>
+
+    <div
+      id="q4"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Προτιμώ το αντηλιακό να είναι:</h2>
+      <button onclick="nextStep('q4', 'q4_galaktoma')">Γαλάκτωμα</button>
+      <button onclick="nextStep('q4', 'q4_spray')">Διάφανο Spray</button>
+      <button onclick="nextStep('q4', 'q4_rollon')">Rollon</button>
+    </div>
+
+    <div
+      id="q5"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Θέλω το αντηλιακό προσώπου μου να:</h2>
+      <button onclick="nextStep('q5', 'q5_panades')">
+        Βοηθάει στην πρόληψη των πανάδων
+      </button>
+      <button onclick="nextStep('q5', 'q5_mat')">Έχει mat αποτέλεσμα</button>
+      <button onclick="nextStep('q5', 'q5_xroma')">Είναι με χρώμα</button>
+      <button onclick="nextStep('q5', 'q5_epidermida')">
+        Ταιριάζει σε ευαίσθητη επιδερμίδα
+      </button>
+    </div>
+
+    <div
+      id="q6"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Με ενδιαφέρει το αντηλιακό να έχει:</h2>
+      <button onclick="nextStep('q6', 'q6_spf20')">
+        SPF20 - Θέλω να μαυρίσω!
+      </button>
+      <button onclick="nextStep('q6', 'q6_spf30')">SPF30</button>
+      <button onclick="nextStep('q6', 'q6_spf50')">SPF50</button>
+      <button onclick="nextStep('q6', 'q6_50plus')">50+</button>
+    </div>
+
+    <div
+      id="q7"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Με ενδιαφέρει το αντηλιακό να έχει:</h2>
+      <button onclick="nextStep('q7', 'q7_spf30')">SPF30</button>
+      <button onclick="nextStep('q7', 'q7_spf50')">SPF50</button>
+    </div>
+
+    <div
+      id="q8"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Με ενδιαφέρει το αντηλιακό να έχει:</h2>
+      <button onclick="nextStep('q8', 'q8_spf30')">SPF30</button>
+      <button onclick="nextStep('q8', 'q8_spf50')">SPF50</button>
+      <button onclick="nextStep('q8', 'q8_50plus')">50+</button>
+    </div>
+
+    <div
+      id="q9"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Πρόκειται για ευαίσθητη επιδερμίδα:</h2>
+      <button onclick="nextStep('q9', 'q9_nai')">Ναι</button>
+      <button onclick="nextStep('q9', 'q9_oxi')">Όχι</button>
+    </div>
+
+    <div
+      id="q10"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Μου αρέσει το άρωμα καρύδας:</h2>
+      <button onclick="nextStep('q10', 'q10_nai')">Ναι</button>
+      <button onclick="nextStep('q10', 'q10_oxi')">Όχι</button>
+    </div>
+
+    <div
+      id="q11"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Προτιμώ το αντηλιακό να είναι:</h2>
+      <button onclick="nextStep('q11', 'q11_galaktoma')">Γαλάκτωμα</button>
+      <button onclick="nextStep('q11', 'q11_ladi')">Λάδι</button>
+      <button onclick="nextStep('q11', 'q11_mist')">Mist</button>
+    </div>
+
+    <div
+      id="q12"
+      class="form-question"
+      style="display: none"
+    >
+      <h2>Προτιμώ το αντηλιακό να είναι:</h2>
+      <button onclick="nextStep('q12', 'q12_galaktoma')">Γαλάκτωμα</button>
+      <button onclick="nextStep('q12', 'q12_mist')">Mist</button>
     </div>
 
     <!-- More steps... -->
 
     <div
       id="result"
-      class="form-step"
+      class="form-result"
       style="display: none"
     >
-      <h2>Recommended sunscreen: <span id="recommendation"></span></h2>
+      <h2>Προτεινόμενο Αντηλιακό:</h2>
+      <h3 id="recommendation"></h3>
     </div>
 
     <script src="script.js"></script>
