@@ -118,67 +118,119 @@ var recommendations = {
   },
 };
 
-// function nextStep(currentStep, answer) {
-//   console.log(currentStep, answer);
-//   console.log(answer);
-//   var nextStep = questionTree[currentStep][answer];
-//   if (answer === "q2_kaitadio") {
-//     document.getElementById(currentStep).style.display = "none";
-//     document.getElementById("q5").style.display = "block";
-//     document.getElementById("q6").style.display = "block";
-//   }
-//   document.getElementById(currentStep).style.display = "none";
-//   document.getElementById(nextStep).style.display = "block";
-//   if (nextStep === "result") {
-//     document.getElementById("recommendation").textContent =
-//       recommendations[currentStep][answer];
-//   }
-// }
-
-var nextSteps = [];
-var storedResults = [];
-var showResult = false;
+let nextSteps = [];
+let storedResults = [];
+let firstResult = [];
+let showResult = false;
+let isQ2Kaitadio = false;
 
 function nextStep(currentStep, answer) {
   // If there are no more steps in the queue, generate the next steps based on the answer
   if (nextSteps.length === 0) {
     if (answer === "q2_kaitadio") {
-      nextSteps.push("q5", "q6");
+      nextSteps.push("q5");
+      isQ2Kaitadio = true;
+    } else if (currentStep === "q5" && isQ2Kaitadio) {
+      if (answer === "q5_mat") {
+        nextSteps.push("q7");
+      } else {
+        nextSteps.push("q6");
+        isQ2Kaitadio = false;
+        showResult = true;
+      }
+    } else if (currentStep === "q7" && isQ2Kaitadio) {
+      nextSteps.push("q6");
+      isQ2Kaitadio = false;
       showResult = true;
     } else {
       nextSteps.push(questionTree[currentStep][answer]);
     }
   }
 
-  console.log(nextSteps);
+  // Back up
+  // if (currentStep === "q5" && answer === "q5_mat" && isQ2Kaitadio) {
+  //   nextSteps.push("q7");
+  // } else if (currentStep === "q5" && !(answer === "q5_mat") && isQ2Kaitadio) {
+  //   nextSteps.push("q6");
+  //   isQ2Kaitadio = false;
+  //   showResult = true;
+  // }
 
+  // If showResult is true, store the recommendation
+  if (showResult) {
+    storedResults.push(recommendations[currentStep][answer]);
+    showResult = false;
+  }
+
+  // Get the next step, hide the current and show the next
   var nextStepId = nextSteps.shift();
   document.getElementById(currentStep).style.display = "none";
   document.getElementById(nextStepId).style.display = "block";
 
-  // Check if the next step is a result after defining the nextStepId variable
+  // Check if the next step is a result
   showResult = showResult || nextStepId.startsWith("result");
-  console.log(showResult);
 
-  // If the next step is a result or showResult is true, show the recommendation
-  if (showResult) {
-    document.getElementById("recommendation").innerHTML +=
-      recommendations[currentStep][answer] + "<br>";
-    showResult = false;
+  // If there are no more steps
+  if (nextSteps.length === 0) {
+    // If there is a stored result, store the result and clear the storedResults
+    if (storedResults.length > 0) {
+      firstResult.push(storedResults[0]);
+      // document.getElementById("recommendation").innerHTML +=
+      //   storedResults.join("<br>");
+      storedResults = [];
+    } else {
+      // Show the results
+      if (firstResult.length) {
+        document.getElementById("recommendation").innerHTML =
+          firstResult + "<br>" + recommendations[currentStep][answer];
+      } else {
+        document.getElementById("recommendation").innerText =
+          recommendations[currentStep][answer];
+      }
+    }
   }
-
-  // If there are more steps, proceed to the next step
-  if (nextSteps.length > 0) {
-    nextStep(nextSteps[0], answer);
-  }
-
-  // If the next step is a result, show the recommendation and clear the next steps
-  // if (nextStep.startsWith("result")) {
-  //   document.getElementById("recommendation").textContent +=
-  //     recommendations[currentStep][answer] + " ";
-  //   nextSteps = [];
-  // }
 }
+
+// function nextStep(currentStep, answer) {
+//   // If there are no more steps in the queue, generate the next steps based on the answer
+//   if (nextSteps.length === 0) {
+//     if (answer === "q2_kaitadio") {
+//       nextSteps.push("q5", "q6");
+//       showResult = true;
+//     } else {
+//       nextSteps.push(questionTree[currentStep][answer]);
+//     }
+//   }
+
+//   console.log(nextSteps);
+
+//   var nextStepId = nextSteps.shift();
+//   document.getElementById(currentStep).style.display = "none";
+//   document.getElementById(nextStepId).style.display = "block";
+
+//   // Check if the next step is a result after defining the nextStepId variable
+//   showResult = showResult || nextStepId.startsWith("result");
+//   console.log(showResult);
+
+//   // If the next step is a result or showResult is true, show the recommendation
+//   if (showResult) {
+//     document.getElementById("recommendation").innerHTML +=
+//       recommendations[currentStep][answer] + "<br>";
+//     showResult = false;
+//   }
+
+//   // If there are more steps, proceed to the next step
+//   if (nextSteps.length > 0) {
+//     nextStep(nextSteps[0], answer);
+//   }
+
+//   // If the next step is a result, show the recommendation and clear the next steps
+//   // if (nextStep.startsWith("result")) {
+//   //   document.getElementById("recommendation").textContent +=
+//   //     recommendations[currentStep][answer] + " ";
+//   //   nextSteps = [];
+//   // }
+// }
 
 // function nextStep(currentStep, answer) {
 //   // If there are no more steps in the queue, generate the next steps based on the answer
